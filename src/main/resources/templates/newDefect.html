@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Новый дефект</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/style-new-defect.css}">
+</head>
+
+<body>
+<!--
+ <form th:action="@{/addPerson}"
+         th:object="${personForm}" method="POST">
+         First Name:
+         <input type="text" th:field="*{firstName}" />
+         <br/>
+         Last Name:
+         <input type="text" th:field="*{lastName}" />
+         <br/>
+         <input type="submit" value="Create" />
+      </form>
+-->
+  <body>
+    <form th:action="@{/new/defect}" th:object="${newDefectForm}" method="POST">
+      <h1 class="title">Создание нового дефекта</h1>
+
+      <div id="wrapper">
+        <label type="text">Название</label>
+        <input class="field" type="text" th:field="*{name}" required>
+
+        <div class="div-block-select">
+
+         <div class="div-select">
+            <label for="state">Статус</label>
+            <select class="field" name="state" id="state" th:field="*{state}" required>
+              <option value=""> -- </option>
+              <option th:each="stateOpt : ${T(ru.hepera.bug.tracker.model.DefectState).values()}"
+                      th:value="${stateOpt}" th:text="${stateOpt}"></option>
+            </select>
+          </div>
+
+          <div class="div-select">
+            <label for="importance">Критичность</label>
+            <select class="field" name="importance" id="importance" th:field="*{importance}" required>
+              <option value=""> -- </option>
+              <option th:each="importanceOpt : ${T(ru.hepera.bug.tracker.model.DefectImportance).values()}"
+                      th:value="${importanceOpt}" th:text="${importanceOpt}"></option>
+            </select>
+          </div>
+
+        </div>
+        <label for="executor">Исполнитель</label>
+        <select class="field" name="executor" id="executor" th:field="*{executorId}" required >
+          <option value=""> -- </option>
+          <option th:each="user : ${users}" th:value="${user.getId()}" th:text="${user.getNameAndFamily()}"></option>
+        </select>
+        <label type="text">Автор</label>
+        <div class="field"></div>
+        <label type="text">Найдено в версии</label>
+        <input class="field" type="text" th:field="*{foundVersion}" required>
+        <label type="text">Исправить в версии</label>
+        <input class="field" type="text" th:field="*{fixVersion}" required>
+      </div>
+      <button type="submit">
+        Далее
+        </span>
+      </button>
+    </form>
+    <form th:action="@{/logout}" method="post">
+      <input type="submit" value="Sign Out"/>
+    </form>
+
+  </body></body>
+
+</html>

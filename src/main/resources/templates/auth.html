@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Вход</title>
+
+  <link rel="stylesheet" type="text/css" th:href="@{/css/style-auth.css}">
+
+</head>
+
+<body>
+
+<div class="tabs" th:object="${authenticationForm}">
+  <input type="radio" name="tab-btn" id="signin" value="" checked>
+  <label for="signin">вход</label>
+  <input type="radio" name="tab-btn" id="signup" value="">
+  <label for="signup">регистрация</label>
+  <div id="arrow"></div>
+  <div class="content" id="content-1">
+    <form method="POST" th:action="@{/login}">
+      <div id="wrapper-signin">
+        <input placeholder="Логин" type="text" name="username" required>
+        <input placeholder="Пароль" type="password" name="password" required>
+      </div>
+      <button type="submit">Вход</button>
+    </form>
+  </div>
+  <div class="content" id="content-2">
+    <form method="POST" th:action="@{/reg}">
+      <div id="wrapper-signup">
+        <input placeholder="Логин" type="text" name="username" required>
+        <input placeholder="Пароль" type="password" name="password" required>
+        <input placeholder="Повторить пароль" type="password" name="repass">
+      </div>
+      <button type="submit">Регистрация</button>
+    </form>
+  </div>
+  <div th:if="${errorMessage}" th:utext="${errorMessage}" style="color:red;font-style:italic;padding: 0px 15px;"></div>
+  <div th:if="${param.error}" style="color:red;font-style:italic;padding: 0px 15px;">IНеверное имя пользователя или пароль.</div>
+  <!--<div th:if="${param.logout}" style="color:red;font-style:italic;padding: 0px 15px;">You have been logged out.</div>-->
+</div>
+
+<script type="text/javascript">
+
+</script>
+
+</body>
+
+</html>
