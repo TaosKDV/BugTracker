@@ -31,7 +31,7 @@ public class WebSecurityConfig {
                 .antMatchers("/reg").permitAll()
                 .antMatchers("/css/***").permitAll()
                 .anyRequest().authenticated())
-        .formLogin((form) -> form.loginPage("/login").defaultSuccessUrl("/new/defect").permitAll())
+        .formLogin((form) -> form.loginPage("/login").defaultSuccessUrl("/all").permitAll())
         .logout(LogoutConfigurer::permitAll);
 
     return http.build();

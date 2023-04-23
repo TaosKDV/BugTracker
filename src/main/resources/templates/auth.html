@@ -4,9 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Вход</title>
-
   <link rel="stylesheet" type="text/css" th:href="@{/css/style-auth.css}">
-
 </head>
 
 <body>
@@ -38,7 +36,6 @@
   </div>
   <div th:if="${errorMessage}" th:utext="${errorMessage}" style="color:red;font-style:italic;padding: 0px 15px;"></div>
   <div th:if="${param.error}" style="color:red;font-style:italic;padding: 0px 15px;">IНеверное имя пользователя или пароль.</div>
-  <!--<div th:if="${param.logout}" style="color:red;font-style:italic;padding: 0px 15px;">You have been logged out.</div>-->
 </div>
 
 <script type="text/javascript">

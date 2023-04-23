@@ -4,84 +4,64 @@
 <head>
   <meta charset="UTF-8">
   <title>Новый дефект</title>
-  <link rel="stylesheet" type="text/css" th:href="@{/css/style-new-defect.css}">
+  <link rel="stylesheet" type="text/css" th:href="@{/css/style-defect.css}">
+  <!--<link rel="stylesheet" type="text/css" href="../static/css/style-new-defect.css">-->
 </head>
 
 <body>
-<form th:action="@{/new/defect}" th:object="${newDefectForm}" method="POST" enctype="multipart/form-data">
-  <h1 class="title">Создание нового дефекта</h1>
+<form th:action="@{/edit/defect(id=${defectForm.defectId})}" th:object="${defectForm}" method="POST">
+  <h1 class="title">Редактирование дефекта</h1>
 
   <div id="wrapper">
     <label type="text">Название</label>
     <input class="field" type="text" th:field="*{name}" required>
 
     <div class="div-block-select">
+
       <div class="div-select">
         <label for="state">Статус</label>
         <select class="field" name="state" id="state" th:field="*{state}" required>
-          <option value=""> --</option>
           <option th:each="stateOpt : ${T(ru.hepera.bug.tracker.model.DefectState).values()}"
                   th:value="${stateOpt}" th:text="${stateOpt}"></option>
         </select>
       </div>
+
       <div class="div-select">
         <label for="importance">Критичность</label>
         <select class="field" name="importance" id="importance" th:field="*{importance}" required>
-          <option value=""> --</option>
           <option th:each="importanceOpt : ${T(ru.hepera.bug.tracker.model.DefectImportance).values()}"
                   th:value="${importanceOpt}" th:text="${importanceOpt}"></option>
         </select>
       </div>
-    </div>
 
+    </div>
     <label for="executor">Исполнитель</label>
     <select class="field" name="executor" id="executor" th:field="*{executorId}" required>
-      <option value=""> --</option>
-      <option th:each="user : ${newDefectForm.users}" th:value="${user.getId()}"
-              th:text="${user.getUsername()}"></option>
+      <option th:each="user : ${defectForm.users}" th:value="${user.getId()}" th:text="${user.getUsername()}"></option>
     </select>
-
     <label type="text">Автор</label>
     <select class="field" name="author" id="author" th:field="*{authorId}" required>
-      <option value=""> --</option>
-      <option th:each="user : ${newDefectForm.users}" th:value="${user.getId()}"
-              th:text="${user.getUsername()}"></option>
+      <option th:each="user : ${defectForm.users}" th:value="${user.getId()}" th:text="${user.getUsername()}"></option>
     </select>
-
     <label type="text">Найдено в версии</label>
     <input class="field" type="text" th:field="*{foundVersion}" required>
-
     <label type="text">Исправить в версии</label>
     <input class="field" type="text" th:field="*{fixVersion}" required>
-
     <label type="text">Шаги воспроизведения</label>
     <div>
       <textarea class="textArea steps" type="text" th:field="*{steps}" required></textarea>
     </div>
-
     <label type="text">Ожидаемый результат</label>
     <div>
       <textarea class="textArea" type="text" th:field="*{expectedResult}" required></textarea>
     </div>
-
     <label type="text">Фактический результат</label>
     <div>
       <textarea class="textArea" type="text" th:field="*{actualResult}" required></textarea>
     </div>
-
-    <div class="input__wrapper">
-      <input name="file" type="file" id="input__file" class="input input__file" multiple>
-      <label for="input__file" class="input__file-button">
-        <span class="input__file-icon-wrapper">
-          <img class="input__file-icon" th:src="@{/images/upload.svg}" alt="Выбрать файл" width="25">
-        </span>
-        <span class="input__file-button-text">Выберите файл</span>
-      </label>
-    </div>
-
   </div>
   <button type="submit">
-    Далее
+    Сохранить
     </span>
   </button>
 </form>
@@ -101,24 +81,6 @@
   </button>
 </form>
 
-<script>
-    let inputs = document.querySelectorAll('.input__file');
-    Array.prototype.forEach.call(inputs, function (input) {
-      let label = input.nextElementSibling,
-      labelVal = label.querySelector('.input__file-button-text').innerText;
-      input.addEventListener('change', function (e) {
-         let countFiles = '';
-         if (this.files && this.files.length >= 1) {
-            countFiles = this.files.length;
-          }
-         if (countFiles) {
-            label.querySelector('.input__file-button-text').innerText = 'Выбрано файлов: ' + countFiles;
-         } else {
-            label.querySelector('.input__file-button-text').innerText = labelVal;
-         }
-      });
-    });
-</script>
 </body>
 
 </html>

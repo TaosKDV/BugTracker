@@ -1,0 +1,126 @@
+@import url(http://fonts.googleapis.com/css?family=Raleway:700,800);
+
+html, body { margin: 0; }
+
+:focus { outline: none; }
+::-webkit-input-placeholder { color: #DEDFDF; }
+::-moz-placeholder { color: #DEDFDF; }
+:-moz-placeholder { color: #DEDFDF; }
+::-ms-input-placeholder { color: #DEDFDF; }
+
+body {
+  background: #6ED0F6;
+  font-family: 'Raleway', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+}
+
+.table {
+	width: 100%;
+	margin-bottom: 20px;
+	border: 15px solid #6ED0F6;
+	border-top: 5px solid #6ED0F6;
+	border-collapse: collapse;
+}
+
+.table th {
+  color: #fff;
+  text-transform: uppercase;
+	font-weight: bold;
+	text-align: left;
+	font-size: 27px;
+	padding: 5px;
+	background: #6ED0F6;
+	border: none;
+	border-bottom: 5px solid #6ED0F6;
+	cursor: pointer;
+}
+
+.table td {
+  font-size: 22px;
+  background: #fff;
+	padding: 5px;
+	border: none;
+	border-bottom: 5px solid #6ED0F6;
+}
+
+th.sorted[data-order="1"],
+th.sorted[data-order="-1"] {
+    position: relative;
+}
+
+th.sorted[data-order="1"]::after,
+th.sorted[data-order="-1"]::after {
+    right: 8px;
+    position: absolute;
+}
+
+th.sorted[data-order="-1"]::after {
+    content: "↓"
+}
+
+th.sorted[data-order="1"]::after {
+    content: "↑"
+}
+
+.form-control {
+       background: #fff;
+       border: 15px solid #6ED0F6;
+       border-radius: 24px;
+       font-size: 27px;
+       font-family: 'Raleway', sans-serif;
+       height: 50px;
+       width: 60%;
+       opacity: 1;
+       text-indent: 20px;
+       transition: all .2s ease-in-out;
+}
+
+.btn-add {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      justify-content: space-evenly;
+      background: #079BCF;
+      border: 15px solid #6ED0F6;
+      border-radius: 24px;
+      font-size: 27px;
+      color: #fff;
+      cursor: pointer;
+      font-family: 'Raleway', sans-serif;
+      height: 82px;
+      overflow: hidden;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #6ED0F6;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: #fff;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #079BCF;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #6ED0F6;}

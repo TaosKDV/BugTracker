@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Список дефектов</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/style-defect-list.css}">
+  <script type="text/javascript" th:src="@{/script/script-defect-list.js}"></script>
+</head>
+
+<body>
+
+<div class="header">
+  <input class="form-control" type="text" placeholder="Поиск" id="search-text" onkeyup="tableSearch()">
+
+  <form th:action="@{/new/defect}" method="GET">
+    <button class="btn-add">
+      <img th:src="@{/images/add_defect.svg}" alt="Add" style="vertical-align: middle">
+      <p>СОЗДАТЬ</p>
+    </button>
+  </form>
+
+  <div class="dropdown">
+    <button class="btn-add dropbtn">
+      <img th:src="@{/images/download.svg}" alt="Download" style="vertical-align: middle">
+    </button>
+    <div class="dropdown-content">
+      <a href="#">CSV</a>
+      <a href="#">XLS</a>
+    </div>
+  </div>
+
+</div>
+
+<table class="table table_sort" id="info-table">
+  <thead>
+  <tr>
+    <th>Название</th>
+    <th>Критичность</th>
+    <th>Статус</th>
+    <th>Исполнитель</th>
+    <th>Автор</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="def : ${defectListForm}">
+    <td><a th:href="@{/defect(id=${def.id})}" th:text="${def.name}"> Name </a></td>
+    <td><a th:href="@{/defect(id=${def.id})}" th:text="${def.importance}"> Importance </a></td>
+    <td><a th:href="@{/defect(id=${def.id})}" th:text="${def.state}"> State </a></td>
+    <td><a th:href="@{/defect(id=${def.id})}" th:text="${def.executor}"> Executor </a></td>
+    <td><a th:href="@{/defect(id=${def.id})}" th:text="${def.author}"> Author </a></td>
+  </tr>
+  </tbody>
+</table>
+
+<form id="logout-form" th:action="@{/logout}" method="post">
+  <button type="submit" style="
+    position: fixed;
+    top: 0%;
+    right: 0%;
+    z-index: 1000;
+    width: auto;
+    height: auto;
+    background: transparent;
+    border: none;
+    ">
+    <img class="logout-icon" th:src="@{/images/logout.svg}" alt="Выход" width="50">
+  </button>
+</form>
+
+</body>
+
+</html>
