@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.web.multipart.MultipartFile;
 import ru.hepera.bug.tracker.model.DefectImportance;
 import ru.hepera.bug.tracker.model.DefectState;
 import ru.hepera.bug.tracker.model.User;
@@ -39,4 +40,7 @@ public class DefectForm {
 
   private String actualResult;
 
+  private String[] attachmentNames;
+
+  private MultipartFile[] file;
 }

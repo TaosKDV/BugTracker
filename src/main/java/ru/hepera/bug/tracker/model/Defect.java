@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -42,11 +43,11 @@ public class Defect {
   @Enumerated(EnumType.STRING)
   private DefectImportance importance;
 
-  @Column(name = "EXECUTOR_ID")
-  private Long executorId;
+  @OneToOne
+  private User executor;
 
-  @Column(name = "AUTHOR_ID")
-  private Long authorId;
+  @OneToOne
+  private User author;
 
   @Column(name = "FOUND_VERSION")
   private String foundVersion;
