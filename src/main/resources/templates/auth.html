@@ -29,13 +29,13 @@
       <div id="wrapper-signup">
         <input placeholder="Логин" type="text" name="username" required>
         <input placeholder="Пароль" type="password" name="password" required>
-        <input placeholder="Повторить пароль" type="password" name="repass">
+        <input placeholder="Повторить пароль" type="password" name="repass" required>
       </div>
       <button type="submit">Регистрация</button>
     </form>
   </div>
   <div th:if="${errorMessage}" th:utext="${errorMessage}" style="color:red;font-style:italic;padding: 0px 15px;"></div>
-  <div th:if="${param.error}" style="color:red;font-style:italic;padding: 0px 15px;">IНеверное имя пользователя или пароль.</div>
+  <div th:if="${param.error}" style="color:red;font-style:italic;padding: 0px 15px;">Неверное имя пользователя или пароль.</div>
 </div>
 
 <script type="text/javascript">

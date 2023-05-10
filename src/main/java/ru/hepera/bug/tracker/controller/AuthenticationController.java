@@ -2,7 +2,6 @@ package ru.hepera.bug.tracker.controller;
 
 import java.util.Collections;
 import lombok.extern.log4j.Log4j2;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -28,15 +27,15 @@ public class AuthenticationController {
   @Autowired
   PasswordEncoder passwordEncoder;
 
+  private String errorMessage(Model model, String errorMessage) {
+    model.addAttribute("errorMessage", errorMessage);
+    return "auth.html";
+  }
+
   @GetMapping({"/", "/auth", "/login"})
   public String auth(Model model) {
     AuthenticationForm authenticationForm = new AuthenticationForm();
     model.addAttribute("authenticationForm", authenticationForm);
-    return "auth.html";
-  }
-
-  private String errorMessage(Model model, String errorMessage) {
-    model.addAttribute("errorMessage", errorMessage);
     return "auth.html";
   }
 

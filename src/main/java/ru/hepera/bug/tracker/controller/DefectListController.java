@@ -43,7 +43,7 @@ public class DefectListController {
       componentList.add(component);
     });
     model.addAttribute("defectListForm", componentList);
-    return "defectList";
+    return "defectList.html";
   }
 
   @GetMapping("/download/csv")

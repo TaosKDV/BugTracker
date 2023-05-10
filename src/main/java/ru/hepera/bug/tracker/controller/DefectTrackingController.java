@@ -51,11 +51,11 @@ public class DefectTrackingController {
     userRepository.findAll().forEach(users::add);
     newDefectForm.setUsers(users);
     model.addAttribute("newDefectForm", newDefectForm);
-    return "newDefect";
+    return "newDefect.html";
   }
 
   @PostMapping(value = {"/new/defect"})
-  public String saveHeaderDefect(@ModelAttribute("newDefectForm") NewDefectForm newDefectForm) {
+  public String saveDefect(@ModelAttribute("newDefectForm") NewDefectForm newDefectForm) {
     User author = userRepository.findById(newDefectForm.getAuthorId()).orElseThrow();
     User executor = userRepository.findById(newDefectForm.getExecutorId()).orElseThrow();
     Defect defect = new Defect();
@@ -124,7 +124,7 @@ public class DefectTrackingController {
     defectForm.setUsers(users);
     log.info("defectForm - " + defectForm);
     model.addAttribute("defectForm", defectForm);
-    return "defect";
+    return "defect.html";
   }
 
   @PostMapping(value = {"/edit/defect"})
